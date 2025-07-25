@@ -6,11 +6,128 @@
 <title>Five Star Guest House - Reviews</title>
 <link rel="stylesheet" href="styles.css" />
 <style>
-/* Additional styles for the review container to enable scrolling */
+/* Additional styles for reviews page */
+body {
+  background-color: #f4f4f4;
+}
+
+/* Container styling for spacing */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Header styles */
+header h1 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2.5em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Navigation styles (assuming styles.css already covers this) */
+nav {
+  display: flex;
+  justify-content: center;
+  background-color: #34495e;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+nav a {
+  color: #fff;
+  padding: 14px 20px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.2s;
+  font-weight: 600;
+}
+nav a:hover, nav a.active {
+  background-color: #1abc9c;
+  transform: scale(1.05);
+}
+
+/* Section styles */
+section {
+  margin-bottom: 40px;
+}
+section h2 {
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 2em;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+section p {
+  font-size: 1.1em;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Review cards styles */
 #reviews-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.card {
+  background: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  width: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+}
+.card h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #2c3e50;
+}
+.rating {
+  font-size: 1.2em;
+  color: #f39c12;
+  margin: 5px 0;
+}
+.review-text {
+  font-size: 0.95em;
+  color: #555;
+  margin-top: 10px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+}
+.profile img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+@media(max-width: 768px) {
+  #reviews-container {
+    flex-direction: column;
+  }
+  .card {
+    width: 100%;
+  }
+}
+
+/* Load More button styles */
+button {
+  background-color: #27ae60;
+  color: #fff;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 1em;
+  transition: background 0.3s, transform 0.2s;
+}
+button:hover {
+  background-color: #2ecc71;
+  transform: scale(1.05);
 }
 </style>
 </head>
@@ -25,18 +142,18 @@
     <a href="rooms.html">Rooms & Amenities</a>
     <a href="booking.html">Booking</a>
     <a href="contact.html">Contact</a>
-    <a href="reviews.html">Reviews</a>
+    <a href="reviews.html" class="active">Reviews</a>
 </nav>
 
 <div class="container">
     <section>
         <h2>What Our Guests Say</h2>
-        <p>Since 2010, thousands of guests from around the world have shared their experiences. Below are some of our latest reviews. Scroll down to see all!</p>
+        <p>Since 2010, thousands of guests from around the world have shared their experiences. Below are a selection of reviews from 2010 to 2025. Feel free to scroll or load more!</p>
     </section>
 
     <section id="reviews-container"></section>
 
-    <!-- Optional Load More button -->
+    <!-- Load More Button -->
     <div style="text-align:center; margin-top:30px;">
         <button id="loadMoreBtn">Load More Reviews</button>
     </div>
@@ -47,7 +164,7 @@
 </footer>
 
 <script>
-// Sample names, comments, and profile images for diversity
+// Sample data arrays for diversity
 const names = [
   "Emily R.", "James T.", "Sophia L.", "Michael B.", "Olivia K.",
   "Liam P.", "Ava S.", "Benjamin H.", "Mia D.", "Noah G."
@@ -74,46 +191,45 @@ const profilePics = [
   "https://randomuser.me/api/portraits/women/51.jpg"
 ];
 
-const reviewsPerLoad = 100; // number of reviews to load each time
+const reviewsPerLoad = 50; // number of reviews per load, adjust as needed
 let totalReviewsGenerated = 0;
+const maxReviews = 2000; // total reviews to generate
 
-// Function to generate a batch of reviews
 function generateReviews(count) {
   const container = document.getElementById('reviews-container');
-
   for (let i = 0; i < count; i++) {
-    const nameIndex = Math.floor(Math.random() * names.length);
-    const commentIndex = Math.floor(Math.random() * comments.length);
-    const picIndex = Math.floor(Math.random() * profilePics.length);
-    const year = Math.floor(Math.random() * 16) + 2010; // years between 2010 and 2025
-    const rating = Math.floor(Math.random() * 5) + 1; // 1 to 5 stars
+    const name = names[Math.floor(Math.random() * names.length)];
+    const comment = comments[Math.floor(Math.random() * comments.length)];
+    const pic = profilePics[Math.floor(Math.random() * profilePics.length)];
+    const year = Math.floor(Math.random() * 16) + 2010; // 2010 - 2025
+    const rating = Math.floor(Math.random() * 5) + 1;
 
     const reviewDiv = document.createElement('div');
-    reviewDiv.className = 'card review';
+    reviewDiv.className = 'card';
 
     reviewDiv.innerHTML = `
-        <div style="display:flex; align-items:center;">
-            <img src="${profilePics[picIndex]}" alt="Profile Picture" style="width:60px; height:60px; border-radius:50%; object-fit:cover; margin-right:15px;">
-            <div>
-                <h3 style="margin:0;">${names[nameIndex]} (${year})</h3>
-                <div style="color:#f39c12;">${'&#9733; '.repeat(rating)}${'&#9734; '.repeat(5 - rating)}</div>
-                <small>${comments[commentIndex]}</small>
-            </div>
+      <div class="profile">
+        <img src="${pic}" alt="Profile Picture"/>
+        <div>
+          <h3>${name} (${year})</h3>
+          <div class="rating">${'★ '.repeat(rating)}${'☆ '.repeat(5 - rating)}</div>
         </div>
-        <p style="margin-top:10px;">${comments[commentIndex]} I had a wonderful time and will definitely return.</p>
+      </div>
+      <div class="review-text">
+        <p>${comment}</p>
+      </div>
     `;
-
     container.appendChild(reviewDiv);
     totalReviewsGenerated++;
+    if (totalReviewsGenerated >= maxReviews) break;
   }
 }
 
-// Initial load of reviews
+// Load initial reviews
 generateReviews(reviewsPerLoad);
 
-// Load more reviews on button click
 document.getElementById('loadMoreBtn').addEventListener('click', () => {
-  if (totalReviewsGenerated >= 2000) {
+  if (totalReviewsGenerated >= maxReviews) {
     alert("All reviews loaded!");
     document.getElementById('loadMoreBtn').disabled = true;
     return;

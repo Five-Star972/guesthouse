@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Five Star Guest House - Reviews</title>
+<link rel="stylesheet" href="styles.css" />
+<style>
+/* Additional styles for the review container to enable scrolling */
+#reviews-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+</style>
+</head>
+<body>
+<header>
+    <h1>Five Star Guest House - Customer Reviews</h1>
+</header>
+
+<nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="reviews.html" class="active">Reviews</a>
+    <a href="contact.html">Contact</a>
+</nav>
+
+<div class="container">
+    <section>
+        <h2>What Our Guests Say</h2>
+        <p>Since 2010, thousands of guests from around the world have shared their experiences. Below are some of our latest reviews. Scroll down to see all!</p>
+    </section>
+
+    <section id="reviews-container"></section>
+
+    <!-- Optional Load More button -->
+    <div style="text-align:center; margin-top:30px;">
+        <button id="loadMoreBtn">Load More Reviews</button>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2010-2025 Five Star Guest House. All rights reserved.</p>
+</footer>
+
+<script>
+// Sample names, comments, and profile images for diversity
+const names = [
+  "Emily R.", "James T.", "Sophia L.", "Michael B.", "Olivia K.",
+  "Liam P.", "Ava S.", "Benjamin H.", "Mia D.", "Noah G."
+];
+
+const comments = [
+  "An amazing experience with top-notch service!",
+  "Comfortable stay with lovely amenities.",
+  "Will come back again! Highly recommended.",
+  "The staff was incredibly friendly and helpful.",
+  "Great location and fantastic breakfast.",
+  "Enjoyed the quiet atmosphere and cozy rooms.",
+  "Exceeded my expectations!",
+  "Excellent value for money.",
+  "Clean, comfortable, and welcoming.",
+  "A memorable stay with excellent hospitality."
+];
+
+const profilePics = [
+  "https://randomuser.me/api/portraits/women/45.jpg",
+  "https://randomuser.me/api/portraits/men/32.jpg",
+  "https://randomuser.me/api/portraits/women/22.jpg",
+  "https://randomuser.me/api/portraits/men/54.jpg",
+  "https://randomuser.me/api/portraits/women/51.jpg"
+];
+
+const reviewsPerLoad = 100; // number of reviews to load each time
+let totalReviewsGenerated = 0;
+
+// Function to generate a batch of reviews
+function generateReviews(count) {
+  const container = document.getElementById('reviews-container');
+
+  for (let i = 0; i < count; i++) {
+    const nameIndex = Math.floor(Math.random() * names.length);
+    const commentIndex = Math.floor(Math.random() * comments.length);
+    const picIndex = Math.floor(Math.random() * profilePics.length);
+    const year = Math.floor(Math.random() * 16) + 2010; // years between 2010 and 2025
+    const rating = Math.floor(Math.random() * 5) + 1; // 1 to 5 stars
+
+    const reviewDiv = document.createElement('div');
+    reviewDiv.className = 'card review';
+
+    reviewDiv.innerHTML = `
+        <div style="display:flex; align-items:center;">
+            <img src="${profilePics[picIndex]}" alt="Profile Picture" style="width:60px; height:60px; border-radius:50%; object-fit:cover; margin-right:15px;">
+            <div>
+                <h3 style="margin:0;">${names[nameIndex]} (${year})</h3>
+                <div style="color:#f39c12;">${'&#9733; '.repeat(rating)}${'&#9734; '.repeat(5 - rating)}</div>
+                <small>${comments[commentIndex]}</small>
+            </div>
+        </div>
+        <p style="margin-top:10px;">${comments[commentIndex]} I had a wonderful time and will definitely return.</p>
+    `;
+
+    container.appendChild(reviewDiv);
+    totalReviewsGenerated++;
+  }
+}
+
+// Initial load of reviews
+generateReviews(reviewsPerLoad);
+
+// Load more reviews on button click
+document.getElementById('loadMoreBtn').addEventListener('click', () => {
+  if (totalReviewsGenerated >= 2000) {
+    alert("All reviews loaded!");
+    document.getElementById('loadMoreBtn').disabled = true;
+    return;
+  }
+  generateReviews(reviewsPerLoad);
+});
+</script>
+</body>
+</html>

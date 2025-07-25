@@ -146,90 +146,77 @@ button:hover {
 </div>
 
 <footer>
-    <p>&copy; 2010-2025 Five Star Guest House. All rights reserved.</p>
+    <p>© 2010-2025 Five Star Guest House. All rights reserved.</p>
 </footer>
 
 <script>
-// Sample guest profiles with personalized reviews about Five Star Guest House
+// Updated reviews data with 10 unique reviews
 const reviewsData = [
   {
     name: "Emily R.",
-    year: 2025,
     comment: "My stay at Five Star Guest House in spring 2025 was unforgettable. The staff was friendly, rooms were spotless, and the hospitality was outstanding. Highly recommended!",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/women/45.jpg"
   },
   {
     name: "James T.",
-    year: 2023,
     comment: "Visited in summer 2023. The location is perfect, and the service at Five Star Guest House exceeded my expectations. Will come back!",
     rating: 4,
     photo: "https://randomuser.me/api/portraits/men/32.jpg"
   },
   {
     name: "Sophia L.",
-    year: 2022,
-    comment: "I stayed at Five Star Guest House in fall 2022. The rooms are cozy, and the breakfast was delicious. A wonderful experience overall.",
+    comment: "I stayed at Five Star Guest House recently. The rooms are cozy, and the breakfast was delicious. A wonderful experience overall.",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/women/22.jpg"
   },
   {
     name: "Michael B.",
-    year: 2021,
-    comment: "My visit in 2021 was fantastic. The staff went above and beyond to make my stay comfortable. Highly recommend Five Star Guest House!",
+    comment: "My visit was fantastic. The staff went above and beyond to make my stay comfortable. Highly recommend Five Star Guest House!",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/men/54.jpg"
   },
   {
     name: "Olivia K.",
-    year: 2020,
-    comment: "During my 2020 trip, I stayed at Five Star Guest House. The amenities are top-notch, and the service is impeccable. Will return!",
+    comment: "During my trip, I stayed at Five Star Guest House. The amenities are top-notch, and the service is impeccable. Will return!",
     rating: 4,
     photo: "https://randomuser.me/api/portraits/women/51.jpg"
   },
   {
     name: "Liam P.",
-    year: 2019,
     comment: "Excellent experience! Five Star Guest House truly deserves its name. The rooms are clean and the staff is very welcoming.",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/men/45.jpg"
   },
   {
     name: "Ava S.",
-    year: 2018,
     comment: "I loved my stay at Five Star Guest House. The location was convenient, and the staff made me feel at home.",
     rating: 4,
     photo: "https://randomuser.me/api/portraits/women/30.jpg"
   },
   {
     name: "Benjamin H.",
-    year: 2017,
     comment: "Visiting in 2017 was a great experience. The service was excellent, and the rooms were very comfortable.",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/men/65.jpg"
   },
   {
     name: "Mia D.",
-    year: 2016,
     comment: "A wonderful place to stay. Five Star Guest House offers excellent value and superb hospitality.",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/women/40.jpg"
   },
   {
     name: "Noah G.",
-    year: 2015,
-    comment: "My family loved our stay in 2015. The staff made us feel special, and the rooms were spacious and clean.",
+    comment: "My family loved our stay. The staff made us feel special, and the rooms were spacious and clean.",
     rating: 5,
     photo: "https://randomuser.me/api/portraits/men/80.jpg"
   }
 ];
 
-const reviewsPerLoad = 10;
-let totalReviewsLoaded = 0;
-const maxReviews = 2000; // total reviews to generate
+const reviewsContainer = document.getElementById('reviews-container');
 
-function createReviewCard(review) {
-  const container = document.getElementById('reviews-container');
+reviewsData.forEach(review => {
   const card = document.createElement('div');
   card.className = 'card';
 
@@ -237,7 +224,7 @@ function createReviewCard(review) {
     <div class="profile">
       <img src="${review.photo}" alt="${review.name}"/>
       <div>
-        <h3>${review.name} (${review.year})</h3>
+        <h3>${review.name}</h3>
         <div class="rating">${'★ '.repeat(review.rating)}${'☆ '.repeat(5 - review.rating)}</div>
       </div>
     </div>
@@ -245,29 +232,8 @@ function createReviewCard(review) {
       <p>${review.comment}</p>
     </div>
   `;
-  container.appendChild(card);
-}
-
-function loadReviews() {
-  for (let i = 0; i < reviewsPerLoad && totalReviewsLoaded < maxReviews; i++) {
-    // pick a random review data
-    const review = reviewsData[Math.floor(Math.random() * reviewsData.length)];
-    createReviewCard(review);
-    totalReviewsLoaded++;
-  }
-}
-
-document.getElementById('loadMoreBtn').addEventListener('click', () => {
-  if (totalReviewsLoaded >= maxReviews) {
-    alert("All reviews loaded!");
-    document.getElementById('loadMoreBtn').disabled = true;
-    return;
-  }
-  loadReviews();
+  reviewsContainer.appendChild(card);
 });
-
-// Initial load
-loadReviews();
 </script>
 </body>
 </html>

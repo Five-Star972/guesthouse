@@ -10,15 +10,11 @@
 body {
   background-color: #f4f4f4;
 }
-
-/* Container styling for spacing */
 .container {
   max-width: 1200px;
   margin: auto;
   padding: 20px;
 }
-
-/* Header styles */
 header h1 {
   font-family: 'Helvetica Neue', Arial, sans-serif;
   font-size: 2.5em;
@@ -26,8 +22,6 @@ header h1 {
   margin-bottom: 10px;
   text-align: center;
 }
-
-/* Navigation styles (assuming styles.css already covers this) */
 nav {
   display: flex;
   justify-content: center;
@@ -46,8 +40,6 @@ nav a:hover, nav a.active {
   background-color: #1abc9c;
   transform: scale(1.05);
 }
-
-/* Section styles */
 section {
   margin-bottom: 40px;
 }
@@ -62,8 +54,6 @@ section p {
   color: #555;
   line-height: 1.5;
 }
-
-/* Review cards styles */
 #reviews-container {
   display: flex;
   flex-wrap: wrap;
@@ -112,8 +102,6 @@ section p {
     width: 100%;
   }
 }
-
-/* Load More button styles */
 button {
   background-color: #27ae60;
   color: #fff;
@@ -123,7 +111,6 @@ button {
   cursor: pointer;
   font-weight: 600;
   font-size: 1em;
-  transition: background 0.3s, transform 0.2s;
 }
 button:hover {
   background-color: #2ecc71;
@@ -148,12 +135,11 @@ button:hover {
 <div class="container">
     <section>
         <h2>What Our Guests Say</h2>
-        <p>Since 2010, thousands of guests from around the world have shared their experiences. Below are a selection of reviews from 2010 to 2025. Feel free to scroll or load more!</p>
+        <p>Since 2010, thousands of guests from around the world have shared their experiences. Here are some recent reviews highlighting their stay at Five Star Guest House.</p>
     </section>
 
     <section id="reviews-container"></section>
 
-    <!-- Load More Button -->
     <div style="text-align:center; margin-top:30px;">
         <button id="loadMoreBtn">Load More Reviews</button>
     </div>
@@ -164,78 +150,124 @@ button:hover {
 </footer>
 
 <script>
-// Sample data arrays for diversity
-const names = [
-  "Emily R.", "James T.", "Sophia L.", "Michael B.", "Olivia K.",
-  "Liam P.", "Ava S.", "Benjamin H.", "Mia D.", "Noah G."
+// Sample guest profiles with personalized reviews about Five Star Guest House
+const reviewsData = [
+  {
+    name: "Emily R.",
+    year: 2025,
+    comment: "My stay at Five Star Guest House in spring 2025 was unforgettable. The staff was friendly, rooms were spotless, and the hospitality was outstanding. Highly recommended!",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/women/45.jpg"
+  },
+  {
+    name: "James T.",
+    year: 2023,
+    comment: "Visited in summer 2023. The location is perfect, and the service at Five Star Guest House exceeded my expectations. Will come back!",
+    rating: 4,
+    photo: "https://randomuser.me/api/portraits/men/32.jpg"
+  },
+  {
+    name: "Sophia L.",
+    year: 2022,
+    comment: "I stayed at Five Star Guest House in fall 2022. The rooms are cozy, and the breakfast was delicious. A wonderful experience overall.",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/women/22.jpg"
+  },
+  {
+    name: "Michael B.",
+    year: 2021,
+    comment: "My visit in 2021 was fantastic. The staff went above and beyond to make my stay comfortable. Highly recommend Five Star Guest House!",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/men/54.jpg"
+  },
+  {
+    name: "Olivia K.",
+    year: 2020,
+    comment: "During my 2020 trip, I stayed at Five Star Guest House. The amenities are top-notch, and the service is impeccable. Will return!",
+    rating: 4,
+    photo: "https://randomuser.me/api/portraits/women/51.jpg"
+  },
+  {
+    name: "Liam P.",
+    year: 2019,
+    comment: "Excellent experience! Five Star Guest House truly deserves its name. The rooms are clean and the staff is very welcoming.",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/men/45.jpg"
+  },
+  {
+    name: "Ava S.",
+    year: 2018,
+    comment: "I loved my stay at Five Star Guest House. The location was convenient, and the staff made me feel at home.",
+    rating: 4,
+    photo: "https://randomuser.me/api/portraits/women/30.jpg"
+  },
+  {
+    name: "Benjamin H.",
+    year: 2017,
+    comment: "Visiting in 2017 was a great experience. The service was excellent, and the rooms were very comfortable.",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/men/65.jpg"
+  },
+  {
+    name: "Mia D.",
+    year: 2016,
+    comment: "A wonderful place to stay. Five Star Guest House offers excellent value and superb hospitality.",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/women/40.jpg"
+  },
+  {
+    name: "Noah G.",
+    year: 2015,
+    comment: "My family loved our stay in 2015. The staff made us feel special, and the rooms were spacious and clean.",
+    rating: 5,
+    photo: "https://randomuser.me/api/portraits/men/80.jpg"
+  }
 ];
 
-const comments = [
-  "An amazing experience with top-notch service!",
-  "Comfortable stay with lovely amenities.",
-  "Will come back again! Highly recommended.",
-  "The staff was incredibly friendly and helpful.",
-  "Great location and fantastic breakfast.",
-  "Enjoyed the quiet atmosphere and cozy rooms.",
-  "Exceeded my expectations!",
-  "Excellent value for money.",
-  "Clean, comfortable, and welcoming.",
-  "A memorable stay with excellent hospitality."
-];
-
-const profilePics = [
-  "https://randomuser.me/api/portraits/women/45.jpg",
-  "https://randomuser.me/api/portraits/men/32.jpg",
-  "https://randomuser.me/api/portraits/women/22.jpg",
-  "https://randomuser.me/api/portraits/men/54.jpg",
-  "https://randomuser.me/api/portraits/women/51.jpg"
-];
-
-const reviewsPerLoad = 50; // number of reviews per load, adjust as needed
-let totalReviewsGenerated = 0;
+const reviewsPerLoad = 10;
+let totalReviewsLoaded = 0;
 const maxReviews = 2000; // total reviews to generate
 
-function generateReviews(count) {
+function createReviewCard(review) {
   const container = document.getElementById('reviews-container');
-  for (let i = 0; i < count; i++) {
-    const name = names[Math.floor(Math.random() * names.length)];
-    const comment = comments[Math.floor(Math.random() * comments.length)];
-    const pic = profilePics[Math.floor(Math.random() * profilePics.length)];
-    const year = Math.floor(Math.random() * 16) + 2010; // 2010 - 2025
-    const rating = Math.floor(Math.random() * 5) + 1;
+  const card = document.createElement('div');
+  card.className = 'card';
 
-    const reviewDiv = document.createElement('div');
-    reviewDiv.className = 'card';
+  card.innerHTML = `
+    <div class="profile">
+      <img src="${review.photo}" alt="${review.name}"/>
+      <div>
+        <h3>${review.name} (${review.year})</h3>
+        <div class="rating">${'★ '.repeat(review.rating)}${'☆ '.repeat(5 - review.rating)}</div>
+      </div>
+    </div>
+    <div class="review-text">
+      <p>${review.comment}</p>
+    </div>
+  `;
+  container.appendChild(card);
+}
 
-    reviewDiv.innerHTML = `
-      <div class="profile">
-        <img src="${pic}" alt="Profile Picture"/>
-        <div>
-          <h3>${name} (${year})</h3>
-          <div class="rating">${'★ '.repeat(rating)}${'☆ '.repeat(5 - rating)}</div>
-        </div>
-      </div>
-      <div class="review-text">
-        <p>${comment}</p>
-      </div>
-    `;
-    container.appendChild(reviewDiv);
-    totalReviewsGenerated++;
-    if (totalReviewsGenerated >= maxReviews) break;
+function loadReviews() {
+  for (let i = 0; i < reviewsPerLoad && totalReviewsLoaded < maxReviews; i++) {
+    // pick a random review data
+    const review = reviewsData[Math.floor(Math.random() * reviewsData.length)];
+    createReviewCard(review);
+    totalReviewsLoaded++;
   }
 }
 
-// Load initial reviews
-generateReviews(reviewsPerLoad);
-
 document.getElementById('loadMoreBtn').addEventListener('click', () => {
-  if (totalReviewsGenerated >= maxReviews) {
+  if (totalReviewsLoaded >= maxReviews) {
     alert("All reviews loaded!");
     document.getElementById('loadMoreBtn').disabled = true;
     return;
   }
-  generateReviews(reviewsPerLoad);
+  loadReviews();
 });
+
+// Initial load
+loadReviews();
 </script>
 </body>
 </html>

@@ -1,34 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   
- 
-    <div style="text-align: center;"><h1>Welcome to Five Star Guest House</h1></div>   
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Five Star Guest House</title>
+<!-- Google Font for a stylish header -->
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+<style>
+  /* Reset and Base Styles */
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 
-    <img src="logo1.jpeg" alt="Header Image" style="
+  body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f0f0f0;
+    line-height: 1.6;
+    color: #333;
+  }
+
+  /* Header Text Styling */
+  .header-title {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .header-title h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 3em;
+    color: navy;
+    background: linear-gradient(135deg, #0D3B66, #1B262C);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .header-title h1:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  }
+
+  /* Logo Image Styling */
+  .logo-image {
     display: block;
     max-width: 50%;
     height: auto;
-    margin: 0 auto;
-    border-radius: 10px; /* optional: rounded corners */
-    /* Enhanced shadow for a more beautiful effect */
+    margin: 20px auto;
+    border-radius: 10px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    object-fit: cover; /* optional: ensures the image covers the area without distortion */
-" />
-        <div style="text-align: center;"><p>Your perfect getaway destination</p></div>
-    
-       
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="rooms.html">Rooms & Amenities</a>
-        <a href="booking.html">Booking</a>
-        <a href="contact.html">Contact</a>
-        <a href="reviews.html">Reviews</a>
-    </nav>
+    object-fit: cover;
+  }
+
+  /* Centered Paragraph */
+  .center-text {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* Navigation Styles */
+  nav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: #0097a7;
+    padding: 10px 0;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  nav a {
+    color: #fff;
+    padding: 12px 20px;
+    margin: 5px 10px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 5px;
+    transition: background 0.3s, transform 0.3s;
+  }
+
+  nav a:hover {
+    background: #007c91;
+    transform: scale(1.05);
+  }
+
+  /* Bubbles Background */
+  .bubbles-background {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: -1;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -50px;
+    width: 20px;
+    height: 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    animation: floatUp 25s linear infinite;
+  }
+
+  @keyframes floatUp {
+    0% {transform: translateY(0) translateX(0); opacity: 0.6;}
+    50% {opacity: 1;}
+    100% {transform: translateY(-110vh) translateX(20px); opacity: 0;}
+  }
+
+  /* Main Content Styles */
+section.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2em;
+  margin-bottom: 15px;
+  color: #388e3c;
+  text-align: center;
+  animation: bounceIn 1s;
+}
+
+@keyframes bounceIn {
+  0% {transform: scale(0.5); opacity: 0;}
+  60% {transform: scale(1.05); opacity: 1;}
+  80% {transform: scale(0.95);}
+  100% {transform: scale(1);}
+}
+
+/* Highlights Section */
+section.highlights {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+/* List Styles */
+ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 10px 0;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* Footer Styles */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+  margin-top: 50px;
+  border-top: 1px solid #444;
+}
+</style>
 </head>
-     <body>
-         <div class="bubbles-background">
+<body>
+
+<!-- Header Title -->
+<div class="header-title">
+  <h1>Welcome to Five Star Guest House</h1>
+</div>
+
+<!-- Logo Image -->
+<img src="logo1.jpeg" alt="Header Image" class="logo-image" />
+
+<!-- Tagline -->
+<div class="center-text">
+  <p>Your perfect getaway destination</p>
+</div>
+
+<!-- Navigation Bar -->
+<nav>
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="rooms.html">Rooms & Amenities</a>
+  <a href="booking.html">Booking</a>
+  <a href="contact.html">Contact</a>
+  <a href="reviews.html">Reviews</a>
+</nav>
+
+<!-- Bubbles Background -->
+<div class="bubbles-background">
   <div class="bubble" style="left:10%; animation-delay: 0s;"></div>
   <div class="bubble" style="left:20%; animation-delay: 2s;"></div>
   <div class="bubble" style="left:30%; animation-delay: 4s;"></div>
@@ -39,32 +206,29 @@
   <div class="bubble" style="left:80%; animation-delay: 4.5s;"></div>
   <div class="bubble" style="left:90%; animation-delay: 0.5s;"></div>
 </div>
-    <section class="container">
-        <h2>Experience Comfort & Luxury</h2>
-        <p>Located in the heart of the city, Five Star Guest House offers cozy rooms, modern amenities, and personalized services to make your stay memorable. Whether you're here for leisure or business, we have everything you need.</p>
-        <img src="front%20view.jpeg" alt="Guest House" style="width:100%; border-radius:8px; margin-top:20px;">
-        
-        <h3>Our Highlights</h3>
-        <section style="padding:10px; border:1px solid #ccc; border-radius:5px;">
-            <section class="container">
-        <ul>
-            <li>Free Wi-Fi throughout the property</li>
-            <li>Complimentary breakfast</li>
-            <li>24/7 Security & Reception</li>
-            <li>Beautiful Garden & Lounge</li>
-            <li>Easy access to city attractions</li>
-        </ul>
-            </section>
-        </section>
-    </section>
-    <footer>
-        <p>&copy; 2010 - 2025 Five Star Guest House. All rights reserved.</p>
-    </footer>
+
+<!-- Main Content Section -->
+<section class="container">
+  <h2>Experience Comfort & Luxury</h2>
+  <p>Located in the heart of the city, Five Star Guest House offers cozy rooms, modern amenities, and personalized services to make your stay memorable. Whether you're here for leisure or business, we have everything you need.</p>
+  <img src="front%20view.jpeg" alt="Guest House" style="width:100%; border-radius:8px; margin-top:20px;">
+  
+  <h3>Our Highlights</h3>
+  <section class="highlights">
+    <ul>
+      <li>Free Wi-Fi throughout the property</li>
+      <li>Complimentary breakfast</li>
+      <li>24/7 Security & Reception</li>
+      <li>Beautiful Garden & Lounge</li>
+      <li>Easy access to city attractions</li>
+    </ul>
+  </section>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2010 - 2025 Five Star Guest House. All rights reserved.</p>
+</footer>
+
 </body>
 </html>
-
-
-
-
-
-
